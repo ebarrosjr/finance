@@ -1,0 +1,26 @@
+using fina.api.Common.Api;
+using fina.shared.Handlers;
+using fina.shared.Models;
+using fina.shared.Requests.Transactions;
+using fina.shared.Responses;
+
+namespace fina.api.Routes.Transactions;
+
+public class CreateTransactionEndpoint : IEndpoint
+{
+    public static void Map(IEndpointRouteBuilder app) => app.MapPost("/", HandleAsync)
+        .WithName("Transactions: Create")
+        .WithSummary("Cria uma nova transação")
+        .WithDescription("Cria uma nova transação")
+        .WithOrder(1)
+        .Produces<Response<Transaction?>>();
+
+    private static async Task<IResult> HandleAsync(ITransactionHandler handler, CreateTransactionRequest request) 
+    {
+        request.UserId = ApiConfiguration.UserId;
+        var response =  await handler.CreateAsync(request);
+        return response.IsSuccess 
+            ? TypedResults.Created($"v1/transactions/{response.Data?.Id}", response) 
+            : TypedResults.BadRequest(response);
+    }    
+}

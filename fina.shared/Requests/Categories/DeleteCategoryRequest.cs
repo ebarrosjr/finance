@@ -1,6 +1,7 @@
 ﻿namespace fina.shared.Requests.Categories;
 
-public class CreateCategoryRequest : Request
+public class DeleteCategoryRequest : Request
 {
     public long Id { get; set; }
+    
 }

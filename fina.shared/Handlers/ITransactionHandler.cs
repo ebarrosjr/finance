@@ -1,5 +1,5 @@
 using fina.shared.Models;
-using fina.shared.Requests.Categories;
+using fina.shared.Requests.Transactions;
 using fina.shared.Responses;
 
 namespace fina.shared.Handlers;

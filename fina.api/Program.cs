@@ -1,6 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using fina.api;
+using fina.api.Common.Api;
+using fina.api.Routes;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddConfiguration();
+builder.AddDataContexts();
+builder.AddCorsOrigin();
+builder.AddDocumentation();
+builder.AddServices();
+
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
+
+app.UseCors(ApiConfiguration.CorsPolicyName);
+app.MapEndpoints();
 
 app.Run();

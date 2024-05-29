@@ -2,7 +2,7 @@
 
 namespace fina.shared.Requests.Categories;
 
-public class DeleteCategoryRequest : Request
+public class CreateCategoryRequest : Request
 {
     [Required(ErrorMessage = "Título inválido")]
     [MaxLength(80, ErrorMessage = "O título deve conter no máximo 80 caracteres")]

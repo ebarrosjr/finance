@@ -1,4 +1,4 @@
-﻿namespace fina.shared.Requests.Categories;
+﻿namespace fina.shared.Requests.Transactions;
 
 public class GetTransactionByIdRequest : Request
 {
